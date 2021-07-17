@@ -32,8 +32,8 @@ class UpdateCourse extends Component {
   }
   handleFormSubmit = (event) => {
     event.preventDefault();
-    let course ={ id: this.state.course.courseId, courseName: this.state.course.courseName, courseDescription: this.state.course.courseDescription,
-        duration: this.state.course.duration, courseImage:this.state.course.courseImage
+    let course ={ id: this.state.courseId, courseName: this.state.courseName, courseDescription: this.state.courseDescription,
+        duration: this.state.duration, courseImage:this.state.courseImage
     };
     console.log(JSON.stringify(course));
    CourseService.updateCourse(this.state.course,this.state.course.courseId).then((res) =>{

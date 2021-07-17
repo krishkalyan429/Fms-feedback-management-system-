@@ -8,6 +8,7 @@ class Home extends Component {
         return ( 
           
  <div>
+     <style>{'body { background: linear-gradient(#33ccff,#ff00ff); }'}</style>
   <Container className="mt-10 w-50">
   <div disply="flex" marginTop="500">
   < CourseSlider />

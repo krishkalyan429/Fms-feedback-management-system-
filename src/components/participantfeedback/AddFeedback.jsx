@@ -143,7 +143,7 @@ class AddParticipant extends Component {
       averageRating: 0,
       feedbackdate: this.state.participant.feedbackdate,
       feedbackMaster: {
-        feedbackSno: 4,
+        feedbackSno: 6,
         question1: "",
         question2: "",
         question3: "",

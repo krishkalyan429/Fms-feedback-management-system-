@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const nav = () => {
   return (
     <header>
-    <AppBar color="primary">
+    <AppBar style={{ backgroundColor: '#ff6600' }}>
       <Toolbar>
       <Navbar.Brand component={NavLink} to="/home">
       <img
@@ -22,7 +22,7 @@ const nav = () => {
         alt="Fms logo"
       />
     </Navbar.Brand>
-        <Button color="inherit" component={NavLink} to="/home">
+        <Button color="inherit" component={NavLink} to="/">
           Home
         </Button>
         <Button color="inherit" component={NavLink} to="/participantlist">
@@ -33,6 +33,9 @@ const nav = () => {
         </Button>
         <Button color="inherit" component={NavLink} to={"/course"}>
             Course
+          </Button>
+          <Button color="inherit" component={NavLink} to={"/Courses"}>
+           CourseList
           </Button>
           <Button color="inherit" component={NavLink} to={"/participantfeedbacklist"}>
             Feedback

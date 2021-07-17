@@ -23,7 +23,6 @@ function CourseSlider() {
           />
           <Carousel.Caption>
             <h3>C# in 20 Days</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -33,7 +32,6 @@ function CourseSlider() {
   
           <Carousel.Caption>
             <h3>Java in 15 Days</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
