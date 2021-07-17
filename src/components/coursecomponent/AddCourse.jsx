@@ -22,6 +22,7 @@ class AddCourse extends Component {
         courseName: "",
         courseDescription: "",
         duration: "",
+        courseImage:""
       },
      
     };
@@ -43,6 +44,7 @@ class AddCourse extends Component {
         courseName: "",
         courseDescription: "",
         duration: "",
+        courseImage:""
       }
       this.setState({
         course:course
@@ -75,6 +77,17 @@ class AddCourse extends Component {
               <Typography variant="h6">Add Course</Typography>
             </Box>
             <form onSubmit={this.handleFormSubmit}>
+            <TextField
+                id="outlined-courseName"
+                label="Course Image"
+                placeholder="Enter Course Image Name"
+                name="courseImage"
+                value={this.state.course.courseImage}
+                onChange={this.handleChange}
+                fullWidth
+                style={{ marginBottom: 10 }}
+              />
+
               <TextField
                 id="outlined-courseName"
                 label="Course Name"

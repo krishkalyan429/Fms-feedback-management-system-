@@ -83,6 +83,7 @@ class CourseList extends Component {
                 <TableCell>CourseName</TableCell>
                 <TableCell>CourseDescription</TableCell>
                 <TableCell>Duration</TableCell>
+                <TableCell>Course Image</TableCell>
                 <TableCell>Actions</TableCell>
               </TableRow>
             </TableHead>
@@ -93,6 +94,7 @@ class CourseList extends Component {
                   <TableCell>{course.courseName}</TableCell>
                   <TableCell>{course.courseDescription}</TableCell>
                   <TableCell>{course.duration}</TableCell>
+                  <TableCell>{course.courseImage}</TableCell>
                   <TableCell>
                     <IconButton
                       component={Link}
