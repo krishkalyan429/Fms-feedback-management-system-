@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const nav = () => {
   return (
     <header>
-    <AppBar style={{ backgroundColor: '#ff6600' }}>
+    <AppBar style={{ backgroundColor: '#cc33ff' }}>
       <Toolbar>
       <Navbar.Brand component={NavLink} to="/home">
       <img

@@ -15,9 +15,7 @@ function App() {
      <FacultyRouter/>
      <CourseRouter/>
      <ParticipantFeedbackRouter/>
-   
      </div>
-   
      </div>
      <Footer/>
     </div>

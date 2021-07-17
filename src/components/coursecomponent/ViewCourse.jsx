@@ -25,16 +25,13 @@ class ViewCourse extends Component {
           <h3 className="text-center">View Course Details</h3>
            <div className="card-body">
              <div className="row text-left">
-              <label>Course Name: </label>
-                <div>{this.state.course.courseName}</div>
+              <label>Course Name: {this.state.course.courseName}</label>
              </div>
               <div className="row text-left">
-               <label>Course Description: </label>
-                <div>{this.state.course.courseDescription}</div>
+               <label>Course Description: {this.state.course.courseDescription}</label>
               </div>
              <div className="row text-left">
-              <label>Duration: </label>
-               <div>{this.state.course.duration}</div>
+              <label>Duration: {this.state.course.duration} </label>
             </div> 
            </div>
          </div>

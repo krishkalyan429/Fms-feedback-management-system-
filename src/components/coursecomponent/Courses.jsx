@@ -26,9 +26,9 @@ class Courses extends Component {
     });
   }
 
-  viewCourse(courseId) {
-    this.props.history.push(`/viewcourse/${courseId}`);
-    console.log(courseId);
+  viewCourse(id) {
+    this.props.history.push(`/viewcourse/${id}`);
+    console.log( this.props.history.push(`/viewcourse/${id}`));
   }
 
   render() {
@@ -56,7 +56,7 @@ class Courses extends Component {
                           {course.courseDescription}
                         </Typography>
                         <Typography variant="body2">
-                          {course.duration}
+                          <h6>Duration: {course.duration}</h6>
                         </Typography>
                       </CardContent>
                     </CardActionArea>
