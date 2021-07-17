@@ -2,27 +2,26 @@ import React from "react";
 import {
   AppBar,
   Toolbar,
-  Typography,
   Button,
-  Box,
 } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
-//import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-// const StyledBadge = withStyles((theme) => ({
-//   badge: {
-//     right: -3,
-//     top: 13,
-//     border: `2px solid ${theme.palette.background.paper}`,
-//     padding: "0 4px",
-//   },
-// }))(Badge);
-const Nav = () => {
+import {  Navbar} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const nav = () => {
   return (
+    <header>
     <AppBar color="primary">
       <Toolbar>
-        <Box borderRadius={16} border={1} p={1}>
-          <Typography variant="h6">FMS</Typography>
-        </Box>
+      <Navbar.Brand component={NavLink} to="/home">
+      <img
+        src="/images/FMSlogo.png"
+        width="100"
+        height="50"
+        className="d-inline-block align-center"
+        alt="Fms logo"
+      />
+    </Navbar.Brand>
         <Button color="inherit" component={NavLink} to="/home">
           Home
         </Button>
@@ -46,6 +45,7 @@ const Nav = () => {
         </Button>
       </Toolbar>
     </AppBar>
+    </header>
   );
 };
-export default Nav;
+export default nav;

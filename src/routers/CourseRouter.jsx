@@ -13,7 +13,7 @@ function CourseRouter(){
             <Route path="/course" component={course}  exact/>
             <Route path="/addcourse" component={AddCourse}  exact />
             <Route  path="/updatecourse/:id" component={UpdateCourse} exact/>
-          </Switch>
+        </Switch>
         </div>
      );
 }

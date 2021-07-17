@@ -10,6 +10,13 @@ import {
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import ParticipantFeedbackService from "../../services/ParticipantFeedbackService";
+import FacultyService from "../../services/FacultyService";
+import  CourseService from "../../services/CourseService"
+import InputLabel from '@material-ui/core/InputLabel';
+import ParticipantService from "../../services/ParticipantService";
+import { makeStyles } from '@material-ui/core/styles';
+import { NativeSelect } from '@material-ui/core';
+import FormControl from '@material-ui/core/FormControl';
 
 class AddParticipant extends Component {
   constructor(props) {
@@ -19,51 +26,61 @@ class AddParticipant extends Component {
         participantId: "",
         facultyId: "", 
         courseId: "",
-         feedbackSno: "",
+        //  feedbackSno: 4,
         marksQuestion1:"",
         marksQuestion2:"",
         marksQuestion3:"",
         marksQuestion4:"",
         marksQuestion5:"",
-        feedbackdate:""
+        feedbackdate:"",
+        faculties:[],
+        courses:[],
+        participants:[]
       }
 
     };
   }
-  
+
+ useStyles = makeStyles((theme) => ({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2),
+    },
+  }));
+
+
+  componentDidMount() {
+    const participant = {...this.state.participant}
+    FacultyService.getAllfaculties()
+    .then((res) => {
+      participant.faculties= res.data;
+        this.setState({participant});
+    });
+    CourseService.getAllCourses().then((res) => {
+      participant.courses=res.data;
+        this.setState({ participant });
+        });
+    ParticipantService.getAllParticipants()
+        .then((res) => {
+          participant.participants=res.data;
+                this.setState({participant});
+            });
+}
+
+
+ 
   
   handleChange = (event) => {
     console.log("handleChange");
-    // const participantFeedback = { ...this.state.participantFeedback };
     const participant = { ...this.state.participant };
     console.log(participant);
-    // participantFeedback[event.target.name] = event.target.value;
     participant[event.target.name] = event.target.value;
-    // this.setState({ participantFeedback : participantFeedback});
     this.setState({ participant : participant});
      console.log(participant);
-    // const participant = { ...this.state.participantFeedback.participant };
-    // console.log(participant);
-    // participant[event.target.name] = event.target.value;
-    // this.setState({ participantId : participantFeedback.participant.participantId});
-    //this.setState({ user });
  };
-
-//   changeParticipantIdHandler = (e) => {
-//     this.setState({id: e.target.value});
-// }
-
-// changeFacultyIdHandler = (e) => {
-//   this.setState({id: e.target.value});
-// }
-
-// changeCourseIdHandler = (e) => {
-//   this.setState({id: e.target.value});
-// }
-
-// changeFeedbackSnoHandler = (e) => {
-//   this.setState({id: e.target.value});
-// }
 
   // validateParticipant = () => {
   //   const partData={...this.state.participant}
@@ -126,12 +143,13 @@ class AddParticipant extends Component {
       averageRating: 0,
       feedbackdate: this.state.participant.feedbackdate,
       feedbackMaster: {
-        feedbackSno: this.state.participant.feedbackSno,
+        feedbackSno: 4,
         question1: "",
         question2: "",
         question3: "",
         question4: "",
         question5: ""
+
       }
     }
     console.log(participantFeedback);
@@ -152,7 +170,11 @@ class AddParticipant extends Component {
         marksQuestion3:"",
         marksQuestion4:"",
         marksQuestion5:"",
-        feedbackdate:""
+        feedbackdate:"",
+        faculties:[],
+        courses:[],
+        participants:[]
+
       }   
       this.setState({
         participant:participant
@@ -171,6 +193,7 @@ class AddParticipant extends Component {
 // }
 
   render() {
+    console.log(this.state.participant.faculties);
     return (
       <Container style={{ paddingTop: "70px" }}>
         <Grid
@@ -214,74 +237,75 @@ class AddParticipant extends Component {
                              {this.state.errors.address}
                            </p>
                          )} */}
-              <TextField
-                id="outlined-basic"
-                label="Participant Id"
-                variant="outlined"
-                placeholder="Enter your ParticipantId"
-                name="participantId"
-                value={this.state.participant.participantId}
-                onChange={this.handleChange}
-                fullWidth
-                style={{ marginBottom: 10 }}
-              />
+        <FormControl
+        variant="outlined"
+         fullWidth  >
+        <InputLabel htmlFor="age-native-helper">Participant Name</InputLabel>
+        <NativeSelect
+          value={this.state.participant.participantId}
+          onChange={this.handleChange}
+          inputProps={{
+            name: 'participantId'
+          }}
+          style={{ marginBottom: 10 }}
+        >
+           <option value={0}> </option>
+         {this.state.participant.participants.map((participant)=>   
+         <option value={participant.participantId}>{participant.participantName}</option> )}
+        </NativeSelect>
+             </FormControl>
               {/* {this.state.errors && (
                            <p className="text-danger font-monospace text-start">
                              {this.state.errors.participantName}
                            </p>
                          )}
               */}
-              
-             
-              <TextField
-                id="outlined-basic"
-                label="Faculty Id"
-                variant="outlined"
-                placeholder="Enter Faculty Id"
-                // type="number"
-                name="facultyId"
-                value={this.state.participant.facultyId}
-                onChange={this.handleChange}
-                fullWidth
-                style={{ marginBottom: 10 }}
-              />
+       
               {/* {this.state.errors && (
                            <p className="text-danger font-monospace text-start">
                              {this.state.errors.email}
                            </p>
                          )} */}
-             
-              <TextField
-                id="outlined-basic"
-                label="Course Id"
-                variant="outlined"
-                placeholder="Enter Course Id"
-                name="courseId"
-                value={this.state.participant.courseId}
-                onChange={this.handleChange}
-                fullWidth
-                style={{ marginBottom: 10 }}
-              />
+                         
+        <FormControl
+        variant="outlined"
+         fullWidth  >
+        <InputLabel
+        htmlFor="age-native-helper">Faculty Name</InputLabel>
+        <NativeSelect variant="outlined"
+          value={this.state.participant.facultyId}
+          onChange={this.handleChange}
+          inputProps={{
+            name: 'facultyId'
+          }}
+          style={{ marginBottom: 10 }}
+        >
+           <option value={0}> </option>
+         {this.state.participant.faculties.map((faculty)=>   
+         <option value={faculty.facultyId}>{faculty.facultyName}</option> )}
+        </NativeSelect>
+             </FormControl>
+              
+        <FormControl 
+        variant="outlined"
+        fullWidth  >
+        <InputLabel htmlFor="age-native-helper">Course Name</InputLabel>
+        <NativeSelect
+          value={this.state.participant.courseId}
+          onChange={this.handleChange}
+          inputProps={{
+            name: 'courseId'
+          }}
+          style={{ marginBottom: 10 }}
+        >
+           <option value={0}> </option>
+         {this.state.participant.courses.map((course)=>   
+         <option value={course.courseId}>{course.courseName}</option> )}
+        </NativeSelect>
+             </FormControl>
               {/* {this.state.errors && (
                            <p className="text-danger font-monospace text-start">
                              {this.state.errors.mobile}
-                           </p>
-                         )} */}
-
-              <TextField
-                id="outlined-basic"
-                label="FeedbackSno"
-                variant="outlined"
-                placeholder="Enter FeedbackSno"
-                name="feedbackSno"
-                value={this.state.participant.feedbackSno}
-                onChange={this.handleChange}
-                fullWidth
-                style={{ marginBottom: 10 }}
-              />
-              {/* {this.state.errors && (
-                           <p className="text-danger font-monospace text-start">
-                             {this.state.errors.address}
                            </p>
                          )} */}
               <TextField

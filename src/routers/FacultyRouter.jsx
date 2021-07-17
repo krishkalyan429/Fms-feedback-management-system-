@@ -5,6 +5,7 @@
   import AddFaculty from "../components/facultycomponent/AddFaculty";
   import UpdateFaculty from "../components/facultycomponent/UpdateFaculty";
   import { Container } from "@material-ui/core";
+import Home from "../components/Home";
   
   function FacultyRouter(){
       return(
@@ -15,6 +16,7 @@
     <Route  path="/facultylist" component={FacultyList} exact/>
     <Route exact path="/addfaculty" component={AddFaculty} />
     <Route exact path="/updatefaculty/:id" component={UpdateFaculty} />
+    <Route exact path="/home" component ={Home} />
     {/* <Route  component={PageNotFound} /> */}
   </Switch>
   </Container>
