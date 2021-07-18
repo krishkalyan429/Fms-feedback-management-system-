@@ -5,6 +5,7 @@ import AddParticipant from "../components/participantcomponent/AddParticipant"
 import UpdateParticipant from "../components/participantcomponent/UpdateParticipant";
 import ParticipantList from "../components/participantcomponent/ParticipantList";
 import About from "../components/About";
+import ContactUs from "../components/ContactUs"
 
 function participantRouter() {
   return ( 
@@ -16,6 +17,7 @@ function participantRouter() {
           <Route exact path="/addparticipant" component={AddParticipant} />
           <Route exact path="/participantlist" component={ParticipantList} />
           <Route exact path="/about" component ={About}/>
+          <Route exact path="/contactus" component={ContactUs}/>
            {/* <Redirect exact from="/" to="/home" /> 
            <Route exact component={PageNotFound} />  */}
         </Switch>

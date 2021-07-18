@@ -35,11 +35,11 @@ class Courses extends Component {
     console.log(this.state.courses);
     return (
       <Grid container spacing={1}>
-        <Grid item md={9}>
+        <Grid item md={12}>
           <Paper elevation={3} style={{ padding: "20px", marginTop: "80px" }}>
             <Grid container spacing={5}>
               {this.state.courses.map((course) => (
-                <Grid item md={4} key={course.courseId}>
+                <Grid item md={3} key={course.courseId}>
                   <Card>
                     <CardActionArea>
                       <CardMedia
@@ -65,8 +65,6 @@ class Courses extends Component {
                     variant="contained"
                     color="primary"
                     type="submit"
-                    // component={Link}
-                    // to={"/viewcourse"}
                     onClick={() => this.viewCourse(course.courseId)}
                   >
                     View Course

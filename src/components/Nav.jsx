@@ -3,15 +3,16 @@ import {
   AppBar,
   Toolbar,
   Button,
+
 } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
-import {  Navbar} from 'react-bootstrap';
+import {  Navbar,DropdownButton} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const nav = () => {
   return (
     <header>
-    <AppBar style={{ backgroundColor: '#cc33ff' }}>
+    <AppBar style={{ backgroundColor: '#FF9933' }}>
       <Toolbar>
       <Navbar.Brand component={NavLink} to="/home">
       <img
@@ -25,25 +26,48 @@ const nav = () => {
         <Button color="inherit" component={NavLink} to="/">
           Home
         </Button>
+       
+        <DropdownButton id="dropdown-basic-button" title="Participant"  >
+        
+        <Button color="inherit" component={NavLink} to="/addparticipant">
+         Participant Registration
+        </Button>
+        
         <Button color="inherit" component={NavLink} to="/participantlist">
-         Participant
+         Edit Your Details
         </Button>
-        <Button color="inherit" component={NavLink} to="/facultylist">
-          Faculty
-        </Button>
-        <Button color="inherit" component={NavLink} to={"/course"}>
-            Course
-          </Button>
-          <Button color="inherit" component={NavLink} to={"/Courses"}>
+        
+        <Button color="inherit" component={NavLink} to={"/Courses"}>
            CourseList
           </Button>
-          <Button color="inherit" component={NavLink} to={"/participantfeedbacklist"}>
+          
+          </DropdownButton>
+         
+          <DropdownButton id="dropdown-basic-button" title="Faculty"  >
+          
+          <Button color="inherit" component={NavLink} to="/addfaculty">
+          Faculty Registration
+        </Button>
+        <Button color="inherit" component={NavLink} to={"/course"}>
+            Course Details
+          </Button>
+          
+          <Button color="inherit" component={NavLink} to={"/facultylist"}>
+            faculty list
+          </Button>
+         
+          <Button color="inherit" component={NavLink} to="/participantlist">
+         ParticipantList
+        </Button>
+        
+        <Button color="inherit" component={NavLink} to={"/participantfeedbacklist"}>
             Feedback
           </Button>
+          </DropdownButton>
         <Button color="inherit" component={NavLink} to="/about">
           About
         </Button>
-        <Button color="inherit" component={NavLink} to="/contact">
+        <Button color="inherit" component={NavLink} to="/contactus">
           Contact Us
         </Button>
       </Toolbar>

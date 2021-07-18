@@ -82,34 +82,42 @@ class AddParticipant extends Component {
      console.log(participant);
  };
 
-  // validateParticipant = () => {
-  //   const partData={...this.state.participant}
-  //   const errors = {};
+  validateFeedback = () => {
+    const partData={...this.state.participant}
+    const errors = {};
   
-  //   if (!partData.participantName) {
-  //     errors.participantName = 'participant name cannot be empty';
-  //   } else if (partData.participantName.length > 20) {
-  //     errors.participantName = 'Name cannot exceed 20 characters';
-  //   }
+    if (!partData.marksQuestion1) {
+      errors.marksQuestion1 = 'Technical Doubts Clarification cannot be empty';
+    }else if(!/^[1-5]{1}$/i.test(partData.marksQuestion1)) {
+      errors.marksQuestion1='Rating Should  Between 1 to 5';
+    } 
 
-  //   if (!partData.address) {
-  //     errors.address = 'Address cannot be empty';
-  //   }
-  
-  //   if (!partData.mobile) {
-  //     errors.mobile = 'mobile number cannot be empty';
-  //   }else if(!/^[0-9]{10}$/i.test(partData.mobile)) {
-  //     errors.mobile='Mobile number Should be 10 Digits';
-  //   } 
-  
-  //   if (!partData.email) {
-  //     errors.email = 'email cannot be empty';
-  //   } else if (!/^[A-Z0-9._%+-]+@[gmail,outlook,yahoo]+\.[A-Z]{2,4}$/i.test(partData.email)) {
-  //     errors.email = 'Invalid Email Address';
-  //   }
-  
-  //   return Object.keys(errors).length === 0 ? null : errors;
-  // };
+    if (!partData.marksQuestion2) {
+      errors.marksQuestion2 = 'Interaction With Participants cannot be empty';
+    }else if(!/^[1-5]{1}$/i.test(partData.marksQuestion2)) {
+      errors.marksQuestion2='Rating Should  Between 1 to 5';
+    } 
+
+    if (!partData.marksQuestion3) {
+      errors.marksQuestion3 = 'Explanation With Real Time Examples cannot be empty';
+    }else if(!/^[1-5]{1}$/i.test(partData.marksQuestion3)) {
+      errors.marksQuestion3='Rating Should  Between 1 to 5';
+    } 
+
+    if (!partData.marksQuestion4) {
+      errors.marksQuestion4 = 'Teaching Skills cannot be empty';
+    }else if(!/^[1-5]{1}$/i.test(partData.marksQuestion4)) {
+      errors.marksQuestion4='Rating Should  Between 1 to 5';
+    } 
+
+    if (!partData.marksQuestion5) {
+      errors.marksQuestion5 = 'Technical clarification cannot be empty';
+    }else if(!/^[1-5]{1}$/i.test(partData.marksQuestion5)) {
+      errors.marksQuestion5='Rating Should  Between 1 to 5';
+    } 
+
+    return Object.keys(errors).length === 0 ? null : errors;
+  };
 
   handleFormSubmit = (event) => {
     event.preventDefault();
@@ -154,10 +162,10 @@ class AddParticipant extends Component {
     }
     console.log(participantFeedback);
 
-    // const errors=this.validateParticipant();
-    //   this.setState({ errors: errors || {} });
-    //   if(errors)
-    //   return
+    const errors=this.validateFeedback();
+      this.setState({ errors: errors || {} });
+      if(errors)
+      return
     ParticipantFeedbackService.addParticipantFeedback(participantFeedback).then((res) =>
     {
       const participant={
@@ -184,13 +192,6 @@ class AddParticipant extends Component {
 )
 
   };
-
-//   componentDidMount() {
-//     ParticipantService.getAllParticipants()
-//     .then((res) => {
-//         this.setState({participants: res.data});
-//     });
-// }
 
   render() {
     console.log(this.state.participant.faculties);
@@ -229,14 +230,9 @@ class AddParticipant extends Component {
                 value={this.state.participant.feedbackdate}
                 onChange={this.handleChange}
                 fullWidth
-                style={{ marginBottom: 10 }}
+                style={{ marginBottom: "20px" }}
               />
-             
-              {/* {this.state.errors && (
-                           <p className="text-danger font-monospace text-start">
-                             {this.state.errors.address}
-                           </p>
-                         )} */}
+
         <FormControl
         variant="outlined"
          fullWidth  >
@@ -247,25 +243,16 @@ class AddParticipant extends Component {
           inputProps={{
             name: 'participantId'
           }}
-          style={{ marginBottom: 10 }}
+          style={{ marginBottom: "20px" }}
         >
+
            <option value={0}> </option>
          {this.state.participant.participants.map((participant)=>   
-         <option value={participant.participantId}>{participant.participantName}</option> )}
+         <option value={participant.participantId}>
+         {participant.participantName}</option> )}
         </NativeSelect>
              </FormControl>
-              {/* {this.state.errors && (
-                           <p className="text-danger font-monospace text-start">
-                             {this.state.errors.participantName}
-                           </p>
-                         )}
-              */}
-       
-              {/* {this.state.errors && (
-                           <p className="text-danger font-monospace text-start">
-                             {this.state.errors.email}
-                           </p>
-                         )} */}
+    
                          
         <FormControl
         variant="outlined"
@@ -278,7 +265,7 @@ class AddParticipant extends Component {
           inputProps={{
             name: 'facultyId'
           }}
-          style={{ marginBottom: 10 }}
+          style={{ marginBottom: "20px" }}
         >
            <option value={0}> </option>
          {this.state.participant.faculties.map((faculty)=>   
@@ -286,6 +273,7 @@ class AddParticipant extends Component {
         </NativeSelect>
              </FormControl>
               
+        
         <FormControl 
         variant="outlined"
         fullWidth  >
@@ -296,18 +284,14 @@ class AddParticipant extends Component {
           inputProps={{
             name: 'courseId'
           }}
-          style={{ marginBottom: 10 }}
+          style={{ marginBottom: "20px" }}
         >
            <option value={0}> </option>
          {this.state.participant.courses.map((course)=>   
          <option value={course.courseId}>{course.courseName}</option> )}
         </NativeSelect>
              </FormControl>
-              {/* {this.state.errors && (
-                           <p className="text-danger font-monospace text-start">
-                             {this.state.errors.mobile}
-                           </p>
-                         )} */}
+              
               <TextField
                 id="outlined-basic"
                 label="Technical Doubts Clarification"
@@ -317,11 +301,11 @@ class AddParticipant extends Component {
                 value={this.state.participant.marksQuestion1}
                 onChange={this.handleChange}
                 fullWidth
-                style={{ marginBottom: 10 }}
+                style={{ marginBottom: "20px" }}
               />
               {this.state.errors && (
                            <p className="text-danger font-monospace text-start">
-                             {this.state.errors.address}
+                             {this.state.errors.marksQuestion1}
                            </p>
                          )}
                <TextField
@@ -333,29 +317,30 @@ class AddParticipant extends Component {
                 value={this.state.participant.marksQuestion2}
                 onChange={this.handleChange}
                 fullWidth
-                style={{ marginBottom: 10 }}
+                style={{ marginBottom: "20px" }}
               />
-              {/* {this.state.errors && (
+               {this.state.errors && (
                            <p className="text-danger font-monospace text-start">
-                             {this.state.errors.address}
+                             {this.state.errors.marksQuestion2}
                            </p>
-                         )} */}
+                         )}
                 <TextField
                 id="outlined-basic"
-                label="Explaination With Real Time Examples"
+                label="Explanation With Real Time Examples"
                 variant="outlined"
                 placeholder="Rating Between 1 to 5"
                 name="marksQuestion3"
                 value={this.state.participant.marksQuestion3}
                 onChange={this.handleChange}
                 fullWidth
-                style={{ marginBottom: 10 }}
+                style={{ marginBottom: "20px" }}
               />
-              {/* {this.state.errors && (
+              {this.state.errors && (
                            <p className="text-danger font-monospace text-start">
-                             {this.state.errors.address}
+                             {this.state.errors.marksQuestion3}
                            </p>
-                         )} */}
+                         )}
+
                 <TextField
                 id="outlined-basic"
                 label="Teaching Skills"
@@ -365,13 +350,13 @@ class AddParticipant extends Component {
                 value={this.state.participant.marksQuestion4}
                 onChange={this.handleChange}
                 fullWidth
-                style={{ marginBottom: 10 }}
+                style={{ marginBottom: "20px" }}
               />
-              {/* {this.state.errors && (
+              {this.state.errors && (
                            <p className="text-danger font-monospace text-start">
-                             {this.state.errors.address}
+                             {this.state.errors.marksQuestion4}
                            </p>
-                         )} */}
+                         )}
                 <TextField
                 id="outlined-basic"
                 label="Technical clarification"
@@ -381,11 +366,16 @@ class AddParticipant extends Component {
                 value={this.state.participant.marksQuestion5}
                 onChange={this.handleChange}
                 fullWidth
-                style={{ marginBottom: 10 }}
+                style={{ marginBottom: "20px" }}
               />
               {this.state.errors && (
                            <p className="text-danger font-monospace text-start">
                              {this.state.errors.address}
+                           </p>
+                         )}
+                          {this.state.errors && (
+                           <p className="text-danger font-monospace text-start">
+                             {this.state.errors.marksQuestion5}
                            </p>
                          )}
 

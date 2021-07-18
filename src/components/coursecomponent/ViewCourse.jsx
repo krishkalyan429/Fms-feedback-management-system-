@@ -1,5 +1,16 @@
 import React, { Component } from "react";
 import CourseService from "../../services/CourseService";
+import {
+  Grid,
+  Card,
+  Typography,
+  CardActionArea,
+  CardMedia,
+  CardContent,
+  Paper,
+  Button,
+} from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 class ViewCourse extends Component {
   constructor(props) {
@@ -22,17 +33,38 @@ class ViewCourse extends Component {
     return (
       <div style={{marginTop:"100px"}}>
         <div className="card col-md-6 offset-md-3" >
-          <h3 className="text-center">View Course Details</h3>
+          <h1 className="text-center"> Course Details</h1>
            <div className="card-body">
-             <div className="row text-left">
-              <label>Course Name: {this.state.course.courseName}</label>
-             </div>
-              <div className="row text-left">
-               <label>Course Description: {this.state.course.courseDescription}</label>
-              </div>
-             <div className="row text-left">
-              <label>Duration: {this.state.course.duration} </label>
-            </div> 
+            <Card>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        alt="Course"
+                        height="300"
+                        image={`../images/${this.state.course.courseImage}`}
+                      />
+                      <CardContent>
+                        <Typography align="left" variant="body2">
+                         COURSE NAME: {this.state.course.courseName}
+                        </Typography>
+                        <Typography align="left" variant="body2">
+                          COURSE INFO: {this.state.course.courseDescription}
+                        </Typography>
+                        <Typography align="left" variant="body2">
+                          <h6>DURATION: {this.state.course.duration}</h6>
+                        </Typography>
+                        <Button
+              variant="contained"
+              color="primary"
+              style={{ marginLeft: "10px" }}
+              component={Link}
+              to={"/addparticipantfeedback"}
+            >
+             Feedback
+            </Button>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
            </div>
          </div>
       </div>

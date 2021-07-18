@@ -186,7 +186,10 @@ class AddParticipant extends Component {
                 >
                   Cancel
                 </Button>
-                <Button variant="contained" color="primary" type="submit" >
+                <Button variant="contained" 
+                color="primary" 
+                type="submit"
+                 >
                   Save
                 </Button>
               </div>
